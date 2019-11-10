@@ -12,6 +12,7 @@ import br.com.sp.itss.domain.Estacionamento;
 import br.com.sp.itss.domain.Patio;
 import br.com.sp.itss.repository.EstacionamentoRepository;
 import br.com.sp.itss.util.Calculo;
+import br.com.sp.itss.util.Constantes;
 
 @Service
 public class EstacionamentoService extends GenericService<Estacionamento, EstacionamentoRepository> {
@@ -41,7 +42,10 @@ public class EstacionamentoService extends GenericService<Estacionamento, Estaci
 	@Override
 	public Estacionamento save(Estacionamento entity) {
 		
-		entity = calcularValor(entity);
+		if (entity.getDataHoraSaida() != null) {
+			entity = calcularValor(entity);
+		}
+		
 		return repository.save(entity);
 	}
 	
@@ -50,7 +54,7 @@ public class EstacionamentoService extends GenericService<Estacionamento, Estaci
 		
 		Patio patio = patioService.findOne(entity.getPatio().getId());
 		
-		long baseHora = 60; // 60 Minutos
+		long baseHora = Constantes.baseHora; // 60 Minutos
 		long qtdeHorasUtilizadas = 0;
 		
 		long minutes = ChronoUnit.MINUTES.between(entity.getDataHoraChegada(), entity.getDataHoraSaida());
