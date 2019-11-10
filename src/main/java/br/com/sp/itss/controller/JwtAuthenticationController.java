@@ -1,4 +1,4 @@
-package br.com.sp.itss.web;
+package br.com.sp.itss.controller;
 
 import java.util.Objects;
 

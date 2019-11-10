@@ -16,6 +16,16 @@ public class Usuario extends IDBaseEntity {
 	@Column(name = "password", length = 45)
 	private String password;
 	
+	
+	public Usuario() {
+	}
+	
+	public Usuario(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 	@Transient
 	private String token;
 

@@ -1,4 +1,4 @@
-package br.com.sp.itss.web;
+package br.com.sp.itss.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

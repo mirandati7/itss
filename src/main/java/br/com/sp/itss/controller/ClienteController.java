@@ -1,4 +1,4 @@
-package br.com.sp.itss.web;
+package br.com.sp.itss.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sp.itss.core.pagination.PageResult;
 import br.com.sp.itss.core.pagination.SearchParams;
-import br.com.sp.itss.domain.Veiculo;
-import br.com.sp.itss.dto.VeiculoDTO;
-import br.com.sp.itss.service.VeiculoService;
+import br.com.sp.itss.domain.Cliente;
+import br.com.sp.itss.dto.ClienteDTO;
+import br.com.sp.itss.service.ClienteService;
 
 @RestController
-@RequestMapping("/api/veiculos")
-public class VeiculoController extends GenericController<VeiculoDTO, Veiculo, VeiculoService> {
+@RequestMapping("/api/clientes")
+public class ClienteController extends GenericController<ClienteDTO, Cliente, ClienteService> {
 	
 
 	@Autowired
-	protected VeiculoController(VeiculoService service) {
+	protected ClienteController(ClienteService service) {
 		super(service);
 	}
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	@ResponseBody
-	public PageResult<VeiculoDTO> list(@RequestBody SearchParams search) {
+	public PageResult<ClienteDTO> list(@RequestBody SearchParams search) {
 		PageRequest pageRequest = controllerManager.toPageRequest(search);
 
-		Page<Veiculo> page = service.list(search.get("modelo"), 
+		Page<Cliente> page = service.list(search.get("nome"), 
 											  pageRequest);
 		return controllerManager.toPageResult(page, getDtoClass());
 
