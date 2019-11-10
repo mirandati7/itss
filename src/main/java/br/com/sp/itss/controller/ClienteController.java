@@ -14,7 +14,10 @@ import br.com.sp.itss.core.pagination.SearchParams;
 import br.com.sp.itss.domain.Cliente;
 import br.com.sp.itss.dto.ClienteDTO;
 import br.com.sp.itss.service.ClienteService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value = "Clientes" ,description = "Endpoint" , tags = "Clientes")
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteController extends GenericController<ClienteDTO, Cliente, ClienteService> {
@@ -25,6 +28,7 @@ public class ClienteController extends GenericController<ClienteDTO, Cliente, Cl
 		super(service);
 	}
 
+	@ApiOperation(value = "Lista todos registros de cliente com paginação")
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	@ResponseBody

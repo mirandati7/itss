@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sp.itss.dto.DashboardDTO;
 import br.com.sp.itss.service.DashboardService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
-
+@Api(value = "Dashboard" ,description = "Endpoint" , tags = "Dashboard")
 @RestController
 @RequestMapping("/api/dashboard")
 public class DashboardController  {
@@ -19,9 +21,11 @@ public class DashboardController  {
 	private DashboardService dashboardService;
 	
 	
+	
+	@ApiOperation(value = "Lista totais de vagas e valor recebido do pátio.")
 	@RequestMapping(value = "/total/{idPatio}", method = RequestMethod.GET)
 	@ResponseBody
-	public DashboardDTO totalVendasRealizadas(@PathVariable("idPatio") Long idPatio){
+	public DashboardDTO total(@PathVariable("idPatio") Long idPatio){
 		return dashboardService.total(idPatio);
 	}
 	

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.sp.itss.domain.JwtRequest;
 import br.com.sp.itss.domain.JwtResponse;
 import br.com.sp.itss.security.JwtTokenUtil;
+import io.swagger.annotations.Api;
 
+@Api(value = "authenticate" ,description = "Endpoint" , tags = "Autenticação")
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {

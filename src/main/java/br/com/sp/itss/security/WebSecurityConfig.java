@@ -50,9 +50,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers("/authenticate").permitAll()
-				.antMatchers(HttpMethod.OPTIONS, "/**")
-				.permitAll()
+				.authorizeRequests()
+				 .antMatchers(
+		                    HttpMethod.GET,
+		                    "/",
+		                    "/v2/api-docs",           // swagger
+		                    "/webjars/**",            // swagger-ui webjars
+		                    "/swagger-resources/**",  // swagger-ui resources
+		                    "/configuration/**",      // swagger configuration
+		                    "/*.html",
+		                    "/favicon.ico",
+		                    "/**/*.html",
+		                    "/**/*.css",
+		                    "/**/*.js"
+		            ).permitAll()				
+				.antMatchers("/authenticate").permitAll()				
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 				.anyRequest().authenticated().and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

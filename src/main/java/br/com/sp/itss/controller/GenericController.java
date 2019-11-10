@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.sp.itss.domain.BaseEntity;
 import br.com.sp.itss.dto.BaseDTO;
 import br.com.sp.itss.service.GenericService;
+import io.swagger.annotations.ApiOperation;
 
 @SuppressWarnings("rawtypes")
 public abstract class GenericController<DTO extends BaseDTO, T extends BaseEntity<Long>, S extends GenericService> {
@@ -56,6 +57,7 @@ public abstract class GenericController<DTO extends BaseDTO, T extends BaseEntit
 		return this._beanClass;
 	}
 
+	@ApiOperation(value = "Salvar e alterar registro.")
 	@CrossOrigin
 	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.POST)
@@ -66,6 +68,7 @@ public abstract class GenericController<DTO extends BaseDTO, T extends BaseEntit
 	}
 	
 
+	@ApiOperation(value = "Excluir registro por id.")
 	@CrossOrigin
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
 	@ResponseBody
@@ -73,6 +76,8 @@ public abstract class GenericController<DTO extends BaseDTO, T extends BaseEntit
 		service.delete(id);
 	}
 	
+	
+	@ApiOperation(value = "Consultar registro por id.")
 	@SuppressWarnings("unchecked")
 	@CrossOrigin
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
@@ -83,12 +88,6 @@ public abstract class GenericController<DTO extends BaseDTO, T extends BaseEntit
 	}
 	
 	
-	@CrossOrigin
-	@RequestMapping(value="/inativar/{id}", method = RequestMethod.DELETE)
-	@ResponseBody
-	public void inativar(@PathVariable("id") Long id) {
-		service.delete(id);
-	}
 	
 	
 	

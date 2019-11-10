@@ -14,7 +14,11 @@ import br.com.sp.itss.core.pagination.SearchParams;
 import br.com.sp.itss.domain.Patio;
 import br.com.sp.itss.dto.PatioDTO;
 import br.com.sp.itss.service.PatioService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+
+@Api(value = "Patios" ,description = "Endpoint" , tags = "Patios")
 @RestController
 @RequestMapping("/api/patios")
 public class PatioController extends GenericController<PatioDTO, Patio, PatioService> {
@@ -25,6 +29,7 @@ public class PatioController extends GenericController<PatioDTO, Patio, PatioSer
 		super(service);
 	}
 
+	@ApiOperation(value = "Lista todos registros de pátio com paginação")
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	@ResponseBody

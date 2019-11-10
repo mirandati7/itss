@@ -14,7 +14,9 @@ import br.com.sp.itss.dto.UsuarioLogadoDTO;
 import br.com.sp.itss.service.LoginService;
 import br.com.sp.itss.util.Criptografia;
 import br.com.sp.itss.util.ResultadoDTO;
+import io.swagger.annotations.Api;
 
+@Api(value = "login" ,description = "Endpoint" , tags = "Login")
 @RestController
 @RequestMapping("/auth")
 public class LoginController {
@@ -24,6 +26,8 @@ public class LoginController {
 	
 	@Autowired
 	protected ControllerManager<UsuarioLogadoDTO, Usuario> controllerManager;
+	
+	
 	
 	@CrossOrigin
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

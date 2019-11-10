@@ -14,7 +14,10 @@ import br.com.sp.itss.core.pagination.SearchParams;
 import br.com.sp.itss.domain.Estacionamento;
 import br.com.sp.itss.dto.EstacionamentoDTO;
 import br.com.sp.itss.service.EstacionamentoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api(value = "Estacionamentos" ,description = "Endpoint" , tags = "Estacionamentos")
 @RestController
 @RequestMapping("/api/estacionamentos")
 public class EstacionamentoController extends GenericController<EstacionamentoDTO, Estacionamento, EstacionamentoService> {
@@ -24,6 +27,8 @@ public class EstacionamentoController extends GenericController<EstacionamentoDT
 		super(service);
 	}
 
+	
+	@ApiOperation(value = "Lista todos registros de estacionamento com paginação.")
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	@ResponseBody
